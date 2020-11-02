@@ -32,10 +32,6 @@ It looks like the following:
 
 This service lets you generate beautiful looking social images for your PHP and Laravel packages. You have already put a lot of time and effort into your package, so why not make it look beautiful using this service.
 
-## Deploy your own
-
-See our [blog post]() about how you can create your own open graph image generation service.
-
 ## Authors
 
 - Steven ([@styfle](https://twitter.com/styfle)) - [Vercel](https://vercel.com)
