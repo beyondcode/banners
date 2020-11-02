@@ -1,8 +1,8 @@
-<a href="https://vercel.com/new/project?template=beyondcode/laravel-og"><img width="128" src="https://vercel.com/button" align="right"></a>
+<a href="https://vercel.com/new/project?template=beyondcode/php-og"><img width="128" src="https://vercel.com/button" align="right"></a>
 
-# [Social Images for PHP Packages](https://laravel-og.beyondco.de)
+# [Social Images for PHP Packages](https://php-og.beyondco.de)
 
-![](https://laravel-og.beyondco.de/My%20Package.png?theme=light&packageName=vendor%2Fmy-awesome-package&pattern=architect&style=style_1&description=This+is+why+it%27s+awesome&md=1&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg)
+![](https://php-og.beyondco.de/My%20Package.png?theme=light&packageName=vendor%2Fmy-awesome-package&pattern=architect&style=style_1&description=This+is+why+it%27s+awesome&md=1&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg)
 
 Serverless service that generates dynamic Open Graph images that you can embed in your `<meta>` tags.
 
