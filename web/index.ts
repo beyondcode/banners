@@ -231,6 +231,8 @@ const markdownOptions: DropdownOption[] = [
 const imageOptions: DropdownOption[] = [
     { text: 'Laravel Logo', value: 'https://laravel.com/img/logomark.min.svg' }, 
     { text: 'Beyond Code Logo', value: 'https://beyondco.de/img/logo.svg' }, 
+    { text: 'PHP Logo', value: 'https://www.php.net/images/logos/new-php-logo.svg' }, 
+    { text: 'Alternative PHP Logo', value: 'https://www.php.net/images/logos/php-logo.svg' }, 
     { text: 'academic-cap', value: 'academic-cap' },
     { text: 'adjustments', value: 'adjustments' },
     { text: 'annotation', value: 'annotation' },
