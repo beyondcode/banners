@@ -35,5 +35,5 @@ This service lets you generate beautiful looking social images for your PHP and 
 ## Authors
 
 - Steven ([@styfle](https://twitter.com/styfle)) - [Vercel](https://vercel.com)
-- Evil Rabbit ([@evilrabbit](https://twitter.com/evilrabbit_)) - [Vercel](https://vercel.com)
-- Marcel Pociot ([@evilrabmarcelpociotbit](https://twitter.com/marcelpociot)) - [Beyond Code](https://beyondco.de)
+- Evil Rabbit ([@evilrabbit_](https://twitter.com/evilrabbit_)) - [Vercel](https://vercel.com)
+- Marcel Pociot ([@marcelpociot](https://twitter.com/marcelpociot)) - [Beyond Code](https://beyondco.de)
