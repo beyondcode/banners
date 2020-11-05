@@ -228,6 +228,11 @@ const markdownOptions: DropdownOption[] = [
     { text: 'Markdown', value: '1' },
 ];
 
+const watermarkOptions: DropdownOption[] = [
+    { text: 'No', value: '0' },
+    { text: 'Yes', value: '1' },
+];
+
 const imageOptions: DropdownOption[] = [
     { text: 'Laravel Logo', value: 'https://laravel.com/img/logomark.min.svg' }, 
     { text: 'Beyond Code Logo', value: 'https://beyondco.de/img/logo.svg' }, 
@@ -537,6 +542,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
         images = [imageOptions[0].value],
         widths=[],
         heights=[],
+        showWatermark = true,
         style = 'style_1',
         pattern = 'architect',
         description = 'This is why it\'s awesome',
@@ -547,6 +553,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
         overrideUrl = null,
     } = state;
     const mdValue = md ? '1' : '0';
+    const watermarkValue = showWatermark ? '1' : '0';
     const url = new URL(window.location.origin);
     url.pathname = `${encodeURIComponent(text)}.${fileType}`;
     url.searchParams.append('theme', theme);
@@ -555,6 +562,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
     url.searchParams.append('style', style);
     url.searchParams.append('description', description);
     url.searchParams.append('md', mdValue);
+    url.searchParams.append('showWatermark', watermarkValue);
     url.searchParams.append('fontSize', fontSize);
     for (let image of images) {
         url.searchParams.append('images', image);
@@ -691,6 +699,14 @@ const App = (_: any, state: AppState, setState: SetState) => {
                             })
                         )
                     ),
+                }),
+                H(Field, {
+                    label: 'Watermark',
+                    input: H(Dropdown, {
+                        options: watermarkOptions,
+                        value: watermarkValue,
+                        onchange: (val: string) => setLoadingState({ showWatermark: val === '1', overrideUrl: url })
+                    })
                 }),
             )
         ),

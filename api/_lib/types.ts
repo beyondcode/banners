@@ -7,6 +7,7 @@ export interface ParsedRequest {
     text: string;
     theme: Theme;
     style: Style;
+    showWatermark: boolean;
     packageName: string;
     description: string;
     pattern: string;
