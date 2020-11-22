@@ -5,7 +5,7 @@ import { ParsedRequest } from './types';
 export function parseRequest(req: IncomingMessage) {
     console.log('HTTP ' + req.url);
     const { pathname, query } = parse(req.url || '/', true);
-    const { fontSize, images, widths, heights, theme, md, showWatermark, pattern, packageName, description, style } = (query || {});
+    const { fontSize, images, widths, heights, theme, md, showWatermark, pattern, packageManager, packageName, description, style } = (query || {});
 
     if (Array.isArray(fontSize)) {
         throw new Error('Expected a single fontSize');
@@ -18,6 +18,9 @@ export function parseRequest(req: IncomingMessage) {
     }
     if (Array.isArray(pattern)) {
         throw new Error('Expected a single pattern');
+    }
+    if (Array.isArray(packageManager)) {
+        throw new Error('Expected a single package manager');
     }
     if (Array.isArray(packageName)) {
         throw new Error('Expected a single package name');
@@ -47,6 +50,7 @@ export function parseRequest(req: IncomingMessage) {
         showWatermark: showWatermark === '1' || showWatermark === 'true',
         fontSize: fontSize || '96px',
         pattern: pattern || 'circuitBoard',
+        packageManager: packageManager || '',
         packageName: packageName || '',
         description: description || '',
         images: getArray(images),
