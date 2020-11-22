@@ -9,7 +9,7 @@ const twemoji = require('twemoji');
 const twOptions = { folder: 'svg', ext: '.svg' };
 const emojify = (text: string) => twemoji.parse(text, twOptions);
 
-function getCss(theme: string, pattern: string, fontSize: string) {
+function getCss(theme: string, pattern: string, fontSize: string, customForeground: string, customBackground: string) {
     let foreground = '#000000';
     let background = '#ffffff';
     let opacity = 0.07;
@@ -19,6 +19,14 @@ function getCss(theme: string, pattern: string, fontSize: string) {
         background = '#000000';
         opacity = 0.15;
     }
+
+    if (theme === 'custom') {
+        foreground = customForeground;
+        background = customBackground;
+    }
+    console.log('27: ' + foreground);
+    console.log('28: ' + background);
+
     return `
     body {
         font-family: Inter;
@@ -27,7 +35,7 @@ function getCss(theme: string, pattern: string, fontSize: string) {
     }
 
     code {
-        color: #ff2d20;
+        color: ${foreground};
         font-size: 2vw;
         font-family: 'Space Mono';
         font-weight: bold;
@@ -75,7 +83,7 @@ function getCss(theme: string, pattern: string, fontSize: string) {
     }
 
     .text-laravel {
-        color: #ff2d20;
+        color: ${foreground};
     }
     `;
 }
@@ -91,7 +99,7 @@ function getDescription(description: string) {
 }
 
 function getAlternativeHtml(parsedReq: ParsedRequest) {
-    const { text, theme, md, fontSize, images, widths, heights, pattern, packageName, description, style, showWatermark } = parsedReq;
+    const { text, theme, md, fontSize, images, widths, heights, pattern, packageName, description, style, showWatermark, customForeground, customBackground } = parsedReq;
 
     return `<!DOCTYPE html>
 <html>
@@ -104,7 +112,7 @@ function getAlternativeHtml(parsedReq: ParsedRequest) {
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
 
     <style>
-        ${getCss(theme, pattern, fontSize)}
+        ${getCss(theme, pattern, fontSize, customForeground, customBackground)}
     </style>
     <body class="h-screen w-screen flex items-center justify-center text-center">
         ${images.map((img, i) =>
@@ -132,7 +140,7 @@ function getWatermark(theme: Theme) {
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-    const { text, theme, md, fontSize, images, widths, heights, pattern, packageName, description, style, showWatermark } = parsedReq;
+    const { text, theme, md, fontSize, images, widths, heights, pattern, packageName, description, style, showWatermark, customForeground, customBackground } = parsedReq;
 
     if (style === 'style_2') {
         return getAlternativeHtml(parsedReq);
@@ -149,7 +157,7 @@ export function getHtml(parsedReq: ParsedRequest) {
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
 
     <style>
-        ${getCss(theme, pattern, fontSize)}
+        ${getCss(theme, pattern, fontSize, customForeground, customBackground)}
     </style>
     <body class="h-screen w-screen flex items-center justify-center text-center">
         <div>

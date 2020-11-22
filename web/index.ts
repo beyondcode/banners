@@ -75,6 +75,23 @@ const TextInput = ({ value, oninput }: TextInputProps) => {
     );
 }
 
+interface ColorInputProps {
+    value: string;
+    oninput: (val: string) => void;
+}
+
+const ColorInput = ({ value, oninput }: ColorInputProps) => {
+    return H('div',
+        { className: 'input-outer-wrapper' },
+        H('div',
+            { className: 'input-inner-wrapper' },
+            H('input',
+                { type: 'color', value, oninput: (e: any) => oninput(e.target.value) }
+            )
+        )
+    );
+}
+
 interface FieldProps {
     label: string;
     input: any;
@@ -115,6 +132,7 @@ const Toast = ({ show, message }: ToastProps) => {
 const themeOptions: DropdownOption[] = [
     { text: 'Light', value: 'light' },
     { text: 'Dark', value: 'dark' },
+    { text: 'Custom', value: 'custom' },
 ];
 
 const styleOptions: DropdownOption[] = [
@@ -551,6 +569,8 @@ const App = (_: any, state: AppState, setState: SetState) => {
         loading = true,
         selectedImageIndex = 0,
         overrideUrl = null,
+        customForeground = '#00ff00',
+        customBackground = '#0000ff',
     } = state;
     const mdValue = md ? '1' : '0';
     const watermarkValue = showWatermark ? '1' : '0';
@@ -564,6 +584,8 @@ const App = (_: any, state: AppState, setState: SetState) => {
     url.searchParams.append('md', mdValue);
     url.searchParams.append('showWatermark', watermarkValue);
     url.searchParams.append('fontSize', fontSize);
+    url.searchParams.append('customForeground', customForeground);
+    url.searchParams.append('customBackground', customBackground);
     for (let image of images) {
         url.searchParams.append('images', image);
     }
@@ -588,6 +610,24 @@ const App = (_: any, state: AppState, setState: SetState) => {
                             let clone = [...images];
                             clone[0] = imageOptions[selectedImageIndex].value;
                             setLoadingState({ theme: val, images: clone });
+                        }
+                    })
+                }),
+                H(Field, {
+                    label: 'Custom Foreground',
+                    input: H(ColorInput, {
+                        value: customForeground,
+                        oninput: (val: string) => {
+                            setLoadingState({ customForeground: val, overrideUrl: url });
+                        }
+                    })
+                }),
+                H(Field, {
+                    label: 'Custom Background',
+                    input: H(ColorInput, {
+                        value: customBackground,
+                        oninput: (val: string) => {
+                            setLoadingState({ customBackground: val, overrideUrl: url });
                         }
                     })
                 }),
