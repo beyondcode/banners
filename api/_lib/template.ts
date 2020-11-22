@@ -24,8 +24,6 @@ function getCss(theme: string, pattern: string, fontSize: string, customForegrou
         foreground = customForeground;
         background = customBackground;
     }
-    console.log('27: ' + foreground);
-    console.log('28: ' + background);
 
     return `
     body {
