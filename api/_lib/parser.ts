@@ -5,7 +5,7 @@ import { ParsedRequest } from './types';
 export function parseRequest(req: IncomingMessage) {
     console.log('HTTP ' + req.url);
     const { pathname, query } = parse(req.url || '/', true);
-    const { fontSize, images, widths, heights, theme, md, showWatermark, pattern, packageName, description, style } = (query || {});
+    const { fontSize, images, widths, heights, theme, md, showWatermark, pattern, packageName, description, style, customForeground, customBackground } = (query || {});
 
     if (Array.isArray(fontSize)) {
         throw new Error('Expected a single fontSize');
@@ -25,7 +25,13 @@ export function parseRequest(req: IncomingMessage) {
     if (Array.isArray(description)) {
         throw new Error('Expected a single package name');
     }
-    
+    if (Array.isArray(customForeground)) {
+        throw new Error('Expected a single customForeground');
+    }
+    if (Array.isArray(customBackground)) {
+        throw new Error('Expected a single customBackground');
+    }
+
     const arr = (pathname || '/').slice(1).split('.');
     let extension = '';
     let text = '';
@@ -41,7 +47,7 @@ export function parseRequest(req: IncomingMessage) {
     const parsedRequest: ParsedRequest = {
         fileType: extension === 'jpeg' ? extension : 'png',
         text: decodeURIComponent(text),
-        theme: theme === 'dark' ? 'dark' : 'light',
+        theme: theme === 'dark' || theme == 'custom' ? theme : 'light',
         style: style === 'style_2' ? 'style_2' : 'style_1',
         md: md === '1' || md === 'true',
         showWatermark: showWatermark === '1' || showWatermark === 'true',
@@ -52,6 +58,8 @@ export function parseRequest(req: IncomingMessage) {
         images: getArray(images),
         widths: getArray(widths),
         heights: getArray(heights),
+        customForeground: decodeURIComponent(customForeground || '') || '#0000ff',
+        customBackground: decodeURIComponent(customBackground || '') || '#0000ff',
     };
     parsedRequest.images = getDefaultImages(parsedRequest.images);
     return parsedRequest;
