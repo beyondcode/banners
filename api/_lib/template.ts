@@ -91,7 +91,7 @@ function getDescription(description: string) {
 }
 
 function getAlternativeHtml(parsedReq: ParsedRequest) {
-    const { text, theme, md, fontSize, images, widths, heights, pattern, packageName, description, style, showWatermark } = parsedReq;
+    const { text, theme, md, fontSize, images, widths, heights, pattern, packageManager, packageName, description, style, showWatermark } = parsedReq;
 
     return `<!DOCTYPE html>
 <html>
@@ -116,7 +116,7 @@ function getAlternativeHtml(parsedReq: ParsedRequest) {
     )}
             </div>
             ${getDescription(description)}
-            <code>composer require ${sanitizeHtml(packageName)}</code>
+            <code>${sanitizeHtml(packageManager)} ${sanitizeHtml(packageName)}</code>
         </div>
         ${showWatermark ? getWatermark(theme) : ''}
     </body>
@@ -132,7 +132,7 @@ function getWatermark(theme: Theme) {
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-    const { text, theme, md, fontSize, images, widths, heights, pattern, packageName, description, style, showWatermark } = parsedReq;
+    const { text, theme, md, fontSize, images, widths, heights, pattern, packageManager, packageName, description, style, showWatermark } = parsedReq;
 
     if (style === 'style_2') {
         return getAlternativeHtml(parsedReq);
@@ -163,7 +163,7 @@ export function getHtml(parsedReq: ParsedRequest) {
             )}
             </div>
             ${getDescription(description)}
-            <code>composer require ${sanitizeHtml(packageName)}</code>
+            <code>${sanitizeHtml(packageManager)} ${sanitizeHtml(packageName)}</code>
             ${showWatermark ? getWatermark(theme) : ''}
         </div>
     </body>

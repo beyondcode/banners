@@ -112,6 +112,12 @@ const Toast = ({ show, message }: ToastProps) => {
     );
 }
 
+const packageManagerOptions: DropdownOption[] = [
+    {text: 'PHP/Composer', value: 'composer require'},
+    {text: 'Node/NPM', value: 'npm install'},
+    {text: 'Node/Yarn', value: 'yarn add'},
+];
+
 const themeOptions: DropdownOption[] = [
     { text: 'Light', value: 'light' },
     { text: 'Dark', value: 'dark' },
@@ -538,6 +544,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
         theme = 'light',
         md = true,
         text = 'My Package',
+        packageManager = packageManagerOptions[0].value,
         packageName = 'vendor/my-awesome-package',
         images = [imageOptions[0].value],
         widths=[],
@@ -557,6 +564,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
     const url = new URL(window.location.origin);
     url.pathname = `${encodeURIComponent(text)}.${fileType}`;
     url.searchParams.append('theme', theme);
+    url.searchParams.append('packageManager', packageManager);
     url.searchParams.append('packageName', packageName);
     url.searchParams.append('pattern', pattern);
     url.searchParams.append('style', style);
@@ -651,6 +659,14 @@ const App = (_: any, state: AppState, setState: SetState) => {
                         oninput: (val: string) => {
                             setLoadingState({ description: val, overrideUrl: url });
                         }
+                    })
+                }),
+                H(Field, {
+                    label: 'Package Manager',
+                    input: H(Dropdown, {
+                        options: packageManagerOptions,
+                        value: packageManager,
+                        onchange: (val: string) => setLoadingState({ packageManager: val, overrideUrl: url })
                     })
                 }),
                 H(Field, {

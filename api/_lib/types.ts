@@ -8,6 +8,7 @@ export interface ParsedRequest {
     theme: Theme;
     style: Style;
     showWatermark: boolean;
+    packageManager: string;
     packageName: string;
     description: string;
     pattern: string;
