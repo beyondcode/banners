@@ -116,6 +116,7 @@ const packageManagerOptions: DropdownOption[] = [
     {text: 'PHP/Composer', value: 'composer require'},
     {text: 'Node/NPM', value: 'npm install'},
     {text: 'Node/Yarn', value: 'yarn add'},
+    {text: 'Python/pip', value: 'pip install'},
 ];
 
 const themeOptions: DropdownOption[] = [
