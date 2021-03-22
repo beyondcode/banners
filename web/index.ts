@@ -117,6 +117,7 @@ const packageManagerOptions: DropdownOption[] = [
     {text: 'Node/NPM', value: 'npm install'},
     {text: 'Node/Yarn', value: 'yarn add'},
     {text: 'Python/pip', value: 'pip install'},
+    {text: 'No Package Manager', value: ''},
 ];
 
 const themeOptions: DropdownOption[] = [

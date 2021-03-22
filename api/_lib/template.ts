@@ -90,6 +90,19 @@ function getDescription(description: string) {
     `
 }
 
+function getPackageInformation(packageManager: string, packageName: string) {
+    if (
+        (packageManager === '' || packageManager === undefined) && 
+        (packageName === '' || packageName === undefined)
+    ) {
+        return '';
+    }
+
+    return `
+    <code>${sanitizeHtml(packageManager)} ${sanitizeHtml(packageName)}</code>
+    `
+}
+
 function getAlternativeHtml(parsedReq: ParsedRequest) {
     const { text, theme, md, fontSize, images, widths, heights, pattern, packageManager, packageName, description, style, showWatermark } = parsedReq;
 
@@ -116,7 +129,7 @@ function getAlternativeHtml(parsedReq: ParsedRequest) {
     )}
             </div>
             ${getDescription(description)}
-            <code>${sanitizeHtml(packageManager)} ${sanitizeHtml(packageName)}</code>
+            ${getPackageInformation(packageManager, packageName)}
         </div>
         ${showWatermark ? getWatermark(theme) : ''}
     </body>
@@ -163,7 +176,7 @@ export function getHtml(parsedReq: ParsedRequest) {
             )}
             </div>
             ${getDescription(description)}
-            <code>${sanitizeHtml(packageManager)} ${sanitizeHtml(packageName)}</code>
+            ${getPackageInformation(packageManager, packageName)}
             ${showWatermark ? getWatermark(theme) : ''}
         </div>
     </body>
