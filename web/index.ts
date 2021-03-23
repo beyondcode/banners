@@ -691,7 +691,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
                     input: H(TextInput, {
                         value: customLogoUrl,
                         oninput: (val: string) => {
-                            setLoadingState({ text: val, overrideUrl: url });
+                            setLoadingState({ customLogoUrl: val, overrideUrl: url });
                         }
                     })
                 }),
