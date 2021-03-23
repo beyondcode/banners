@@ -98,8 +98,10 @@ function getPackageInformation(packageManager: string, packageName: string) {
         return '';
     }
 
+    const packageInformation: string = `${sanitizeHtml(packageManager)} ${sanitizeHtml(packageName)}`.trim();
+
     return `
-    <code>${sanitizeHtml(packageManager)} ${sanitizeHtml(packageName)}</code>
+    <code>${packageInformation}</code>
     `
 }
 
