@@ -8,6 +8,8 @@ const entityMap: { [key: string]: string } = {
 };
 
 export function sanitizeHtml(html: string) {
-    return String(html).replace(/[&<>"'\/]/g, key => entityMap[key]);
+    return String(html)
+      .replace(/[&<>"'\/]/g, (key) => entityMap[key])
+      .replaceAll("+", " ");
 }
 

@@ -2,7 +2,8 @@
     "extends": "../api/tsconfig.json",
     "compilerOptions": {
         "module": "esnext",
-        "outDir": "../public/dist"
+        "outDir": "../public/dist",
+        "noImplicitAny": false
     },
     "include": [
         "./"
