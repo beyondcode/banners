@@ -246,6 +246,7 @@ const imageOptions: DropdownOption[] = [
     { text: 'Beyond Code Logo', value: 'https://beyondco.de/img/logo.svg' }, 
     { text: 'PHP Logo', value: 'https://www.php.net/images/logos/new-php-logo.svg' }, 
     { text: 'Alternative PHP Logo', value: 'https://www.php.net/images/logos/php-logo.svg' }, 
+    { text: 'FilamentPHP Logo', value: 'https://user-images.githubusercontent.com/41773797/131910226-676cb28a-332d-4162-a6a8-136a93d5a70f.png' }, 
     { text: 'academic-cap', value: 'academic-cap' },
     { text: 'adjustments', value: 'adjustments' },
     { text: 'annotation', value: 'annotation' },
