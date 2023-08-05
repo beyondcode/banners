@@ -517,6 +517,7 @@ const heightOptions = [
 ];
 
 interface AppState extends ParsedRequest {
+    customLogoUrl: string;
     loading: boolean;
     showToast: boolean;
     messageToast: string;
@@ -541,6 +542,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
         setState({ ...newState, loading: true });
     };
     const {
+        customLogoUrl = '',
         fileType = 'png',
         fontSize = '100px',
         theme = 'light',
@@ -574,8 +576,12 @@ const App = (_: any, state: AppState, setState: SetState) => {
     url.searchParams.append('md', mdValue);
     url.searchParams.append('showWatermark', watermarkValue);
     url.searchParams.append('fontSize', fontSize);
-    for (let image of images) {
-        url.searchParams.append('images', image);
+    if(customLogoUrl != '') {
+        url.searchParams.append('images', customLogoUrl);
+    }else{
+        for (let image of images) {
+            url.searchParams.append('images', image);
+        }
     }
     for (let width of widths) {
         url.searchParams.append('widths', width);
@@ -677,6 +683,15 @@ const App = (_: any, state: AppState, setState: SetState) => {
                         value: packageName,
                         oninput: (val: string) => {
                             setLoadingState({ packageName: val, overrideUrl: url });
+                        }
+                    })
+                }),
+                H(Field, {
+                    label: 'Link your logo',
+                    input: H(TextInput, {
+                        value: customLogoUrl,
+                        oninput: (val: string) => {
+                            setLoadingState({ customLogoUrl: val, overrideUrl: url });
                         }
                     })
                 }),
